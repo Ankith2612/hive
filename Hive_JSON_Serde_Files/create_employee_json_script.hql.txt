@@ -1,0 +1,13 @@
+create external table employee_json (
+employees array<struct<emailAddress:string,employeeCode:string,firstName:string,jobTitleName: string,lastName:string,phoneNumber:string,preferredFullName:string,region:string,userId:string>>
+)
+ROW FORMAT SERDE 
+  'org.openx.data.jsonserde.JsonSerDe' 
+STORED AS INPUTFORMAT
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+'hdfs://quickstart.cloudera:8020/user/hive/warehouse/employee_json';
+
+
